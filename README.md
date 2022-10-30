@@ -120,3 +120,7 @@ function finalValue(vU, vM){
 `https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Rock,%20paper,%20or%20scissors%20game%20page`
 
 ## Video
+
+
+https://user-images.githubusercontent.com/99032604/198900134-c169b77f-566e-45a4-92a5-0708148d999c.mp4
+
