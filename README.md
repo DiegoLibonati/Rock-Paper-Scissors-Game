@@ -17,88 +17,6 @@
 
 I made a rock-paper-scissors like web page where the user plays against an AI. The AI is configured to choose randomly by rock, paper, scissors. In case the user wins a victory sign and the AI selection will be shown, in case the user loses the same thing will happen and if the user draws as well.
 
-## Feel free to edit my code
-
-If you want you can edit the header colors, adding values to the array:
-
-```
-const colors = ["red", "green", "blue", "NEW COLOR"];
-```
-
-If you want you can add more ways to play and not only the traditional ones like rock, paper, scissors. You can also put `Diamond` as an example in the choices to choose from.
-
-```
-const selectMachineValue = ["Rock", "Paper", "Scissor", "NEW ITEM"];
-```
-
-If you edit the above it should modify the following, (I remind you that you must enter an IMG element in the HTML relevant to your new ITEM)
-
-The first addEventListener execute the opacity when you click a element from the list and the function finalValue find the final condition like if you win, lose or draw.
-
-```
-selectValue.addEventListener("input", ()=>{
-    if (selectValue.value == "Rock"){
-        imgRock.style.opacity = "1";
-        imgPaper.style.opacity = "0";
-        imgScissor.style.opacity = "0";
-    } else if (selectValue.value == "Paper"){
-        imgRock.style.opacity = "0";
-        imgPaper.style.opacity = "1";
-        imgScissor.style.opacity = "0";
-    } else if (selectValue.value == "Scissor"){
-        imgRock.style.opacity = "0";
-        imgPaper.style.opacity = "0";
-        imgScissor.style.opacity = "1";
-    }
-})
-
-function finalValue(vU, vM){
-
-    if (vU == "Rock" && vM == "0"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[0]}`
-        pTwo.textContent = "Your choice was: Rock"
-        pTr.textContent = "ITS A DRAW";
-    } else if (vU == "Rock" && vM == "1"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[1]}`
-        pTwo.textContent = "Your choice was: Rock"
-        pTr.textContent = "You LOSE";
-    } else if (vU == "Rock" && vM == "2"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[2]}`
-        pTwo.textContent = "Your choice was: Rock"
-        pTr.textContent = "You WIN";
-    }
-
-
-    if (vU == "Paper" && vM == "0"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[0]}`
-        pTwo.textContent = "Your choice was: Paper"
-        pTr.textContent = "You WIN";
-    } else if (vU == "Paper" && vM == "1"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[1]}`
-        pTwo.textContent = "Your choice was: Paper"
-        pTr.textContent = "ITS A DRAW";
-    } else if (vU == "Paper" && vM == "2"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[2]}`
-        pTwo.textContent = "Your choice was: Paper"
-        pTr.textContent = "You LOSE";
-    }
-
-    if (vU == "Scissor" && vM == "0"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[2]}`
-        pTwo.textContent = "Your choice was: Scissor"
-        pTr.textContent = "You LOSE";
-    } else if (vU == "Scissor" && vM == "1"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[0]}`
-        pTwo.textContent = "Your choice was: Scissor"
-        pTr.textContent = "You WIN";
-    } else if (vU == "Scissor" && vM == "2"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[1]}`
-        pTwo.textContent = "Your choice was: Scissor"
-        pTr.textContent = "ITS A DRAW";
-    }
-}
-```
-
 ## Technologies used
 
 1. Javascript
@@ -107,13 +25,15 @@ function finalValue(vU, vM){
 
 ## Galery
 
-![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs-0.jpg)
+![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs2-0.jpg)
 
-![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs-1.jpg)
+![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs2-1.jpg)
 
-![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs-2.jpg)
+![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs2-2.jpg)
 
-![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs-3.jpg)
+![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs2-3.jpg)
+
+![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs2-4.jpg)
 
 ## Portfolio Link
 
@@ -121,6 +41,138 @@ function finalValue(vU, vM){
 
 ## Video
 
+## Documentation
 
-https://user-images.githubusercontent.com/99032604/198900134-c169b77f-566e-45a4-92a5-0708148d999c.mp4
+Here we get all the images and these images have your personal id:
 
+```
+const btnsUserOption = document.querySelectorAll(".option-to-play");
+```
+
+Here we get the two scores and each score has its own personal id:
+
+```
+const scores = document.querySelectorAll(".score");
+```
+
+Here we get the text in which the result of each round will be displayed:
+
+```
+const textResult = document.getElementById("text-result");
+```
+
+Here we get the text which will show when the user will be able to play again:
+
+```
+const textPlay = document.getElementById("text-play");
+```
+
+Here we assign the function getUserChoice to each image when you click on one of them:
+
+```
+btnsUserOption.forEach((btnUserOption) => {
+  btnUserOption.addEventListener("click", (e) => getUserChoice(e));
+});
+```
+
+This function will be executed every time an image is clicked. We are going to obtain the id of the clicked image that will be the option that the user chose, we obtain the option that the AI chose through obtaining a random value of its Array of game possibilities, then we will execute the function resultOfRound that will return us if the user won, lost or tied. Then the pertinent validations will be made:
+
+```
+const getUserChoice = (e) => {
+  const optionUserChoice = e.target.id;
+
+  const optionIaChoice = iaChoice[Math.floor(Math.random() * iaChoice.length)];
+
+  const roundResult = resultOfRound(optionUserChoice, optionIaChoice);
+
+  btnsUserOption.forEach((btnUserOption) => {
+    btnUserOption.style.pointerEvents = "none";
+  });
+
+  textPlay.textContent = "";
+
+  if (roundResult && roundResult !== "draw") {
+    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | User Win!`;
+    increaseScore(roundResult);
+  } else if (!roundResult && roundResult !== "draw") {
+    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Ia Win!`;
+    increaseScore(roundResult);
+  } else {
+    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Draw!`;
+  }
+};
+```
+
+This function will return whether the user won, tied or lost depending on the values we pass as parameters:
+
+```
+const resultOfRound = (userValue, iaValue) => {
+  if (userValue == "rock" && iaValue == "rock") {
+    return "draw";
+  } else if (userValue == "rock" && iaValue == "paper") {
+    return false;
+  } else if (userValue == "rock" && iaValue == "scissor") {
+    return true;
+  }
+
+  if (userValue == "paper" && iaValue == "rock") {
+    return true;
+  } else if (userValue == "paper" && iaValue == "paper") {
+    return "draw";
+  } else if (userValue == "paper" && iaValue == "scissor") {
+    return false;
+  }
+
+  if (userValue == "scissor" && iaValue == "rock") {
+    return false;
+  } else if (userValue == "scissor" && iaValue == "paper") {
+    return true;
+  } else if (userValue == "scissor" && iaValue == "scissor") {
+    return "draw";
+  }
+};
+```
+
+This function increments the score of the user or the ia depending on who won in case of a tie it will not return anything or do anything:
+
+```
+const increaseScore = (roundResult) => {
+  if (roundResult && roundResult !== "draw") {
+    for (const element of scores) {
+      if (element.id === `user-score`) {
+        element.textContent = `${parseInt(element.textContent) + 1}`;
+      }
+    }
+  } else if (!roundResult && roundResult !== "draw") {
+    for (const element of scores) {
+      if (element.id === `ia-score`) {
+        element.textContent = `${parseInt(element.textContent) + 1}`;
+      }
+    }
+  }
+
+  return;
+};
+```
+
+Each time the element containing the result changes, resetToPlay will be executed:
+
+```
+textResult.addEventListener("DOMSubtreeModified", () => resetToPlay());
+```
+
+This function returns all values that are not the default scores after 2.5 minutes:
+
+```
+const resetToPlay = () => {
+  const timeoutToReset = setTimeout(() => {
+    btnsUserOption.forEach((btnUserOption) => {
+      btnUserOption.style.pointerEvents = "auto";
+    });
+    textPlay.textContent = "Make your choice now!";
+    textResult.textContent = "Choose an option";
+
+    return () => clearTimeout(timeoutToReset);
+  }, 2500);
+};
+```
