@@ -1,119 +1,93 @@
-const selectValue = document.querySelector(".select_center");
+const btnsUserOption = document.querySelectorAll(".option-to-play");
+const scores = document.querySelectorAll(".score");
 
-const imgRock = document.getElementById("imgRock");
-const imgPaper = document.getElementById("imgPaper");
-const imgScissor = document.getElementById("imgScissor");
+const textResult = document.getElementById("text-result");
+const textPlay = document.getElementById("text-play");
 
-const playBtn = document.getElementById("btnPlay");
+const iaChoice = ["rock", "paper", "scissor"];
 
-const pOne = document.getElementById("p1"); 
-const pTwo = document.getElementById("p2"); 
-const pTr = document.getElementById("p3"); 
-const openNewModal = document.querySelector(".article_modal");
-const closeModalBtn = document.querySelector(".a");
+const getUserChoice = (e) => {
+  const optionUserChoice = e.target.id;
 
-const selectMachineValue = ["Rock", "Paper", "Scissor"];
+  const optionIaChoice = iaChoice[Math.floor(Math.random() * iaChoice.length)];
 
+  const roundResult = resultOfRound(optionUserChoice, optionIaChoice);
 
-selectValue.addEventListener("input", ()=>{
-    if (selectValue.value == "Rock"){
-        imgRock.style.opacity = "1";
-        imgPaper.style.opacity = "0";
-        imgScissor.style.opacity = "0";
-    } else if (selectValue.value == "Paper"){
-        imgRock.style.opacity = "0";
-        imgPaper.style.opacity = "1";
-        imgScissor.style.opacity = "0";
-    } else if (selectValue.value == "Scissor"){
-        imgRock.style.opacity = "0";
-        imgPaper.style.opacity = "0";
-        imgScissor.style.opacity = "1";
-    }
-})
+  btnsUserOption.forEach((btnUserOption) => {
+    btnUserOption.style.pointerEvents = "none";
+  });
 
-playBtn.addEventListener("click", (e)=>{
-    e.preventDefault()
+  textPlay.textContent = "";
 
-    const vM = valueMachine();
+  if (roundResult && roundResult !== "draw") {
+    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | User Win!`;
+    increaseScore(roundResult);
+  } else if (!roundResult && roundResult !== "draw") {
+    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Ia Win!`;
+    increaseScore(roundResult);
+  } else {
+    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Draw!`;
+  }
+};
 
-    finalValue(selectValue.value, vM);
-
-    openNewModal.style.display = "block";
-    document.querySelector(".section_container").classList.add("blurEffect");
-    playBtn.style.display ="none";
+btnsUserOption.forEach((btnUserOption) => {
+  btnUserOption.addEventListener("click", (e) => getUserChoice(e));
 });
 
-closeModalBtn.addEventListener("click", ()=>{
-    openNewModal.style.display = "none";
-    document.querySelector(".section_container").classList.remove("blurEffect");
-    playBtn.style.display = "block";
-});
+const resultOfRound = (userValue, iaValue) => {
+  if (userValue == "rock" && iaValue == "rock") {
+    return "draw";
+  } else if (userValue == "rock" && iaValue == "paper") {
+    return false;
+  } else if (userValue == "rock" && iaValue == "scissor") {
+    return true;
+  }
 
+  if (userValue == "paper" && iaValue == "rock") {
+    return true;
+  } else if (userValue == "paper" && iaValue == "paper") {
+    return "draw";
+  } else if (userValue == "paper" && iaValue == "scissor") {
+    return false;
+  }
 
+  if (userValue == "scissor" && iaValue == "rock") {
+    return false;
+  } else if (userValue == "scissor" && iaValue == "paper") {
+    return true;
+  } else if (userValue == "scissor" && iaValue == "scissor") {
+    return "draw";
+  }
+};
 
-function valueMachine(randomValue){
-
-    randomValue = Math.floor(Math.random() * selectMachineValue.length);
-
-    return randomValue
-
-}
-
-function finalValue(vU, vM){
-
-    if (vU == "Rock" && vM == "0"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[0]}` 
-        pTwo.textContent = "Your choice was: Rock" 
-        pTr.textContent = "ITS A DRAW";
-    } else if (vU == "Rock" && vM == "1"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[1]}`
-        pTwo.textContent = "Your choice was: Rock" 
-        pTr.textContent = "You LOSE";
-    } else if (vU == "Rock" && vM == "2"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[2]}`
-        pTwo.textContent = "Your choice was: Rock" 
-        pTr.textContent = "You WIN";
+const increaseScore = (roundResult) => {
+  if (roundResult && roundResult !== "draw") {
+    for (const element of scores) {
+      if (element.id === `user-score`) {
+        element.textContent = `${parseInt(element.textContent) + 1}`;
+      }
     }
-
-
-    if (vU == "Paper" && vM == "0"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[0]}`
-        pTwo.textContent = "Your choice was: Paper" 
-        pTr.textContent = "You WIN";
-    } else if (vU == "Paper" && vM == "1"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[1]}` 
-        pTwo.textContent = "Your choice was: Paper" 
-        pTr.textContent = "ITS A DRAW";
-    } else if (vU == "Paper" && vM == "2"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[2]}`
-        pTwo.textContent = "Your choice was: Paper" 
-        pTr.textContent = "You LOSE";
+  } else if (!roundResult && roundResult !== "draw") {
+    for (const element of scores) {
+      if (element.id === `ia-score`) {
+        element.textContent = `${parseInt(element.textContent) + 1}`;
+      }
     }
+  }
 
-    if (vU == "Scissor" && vM == "0"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[2]}`
-        pTwo.textContent = "Your choice was: Scissor" 
-        pTr.textContent = "You LOSE";
-    } else if (vU == "Scissor" && vM == "1"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[0]}`
-        pTwo.textContent = "Your choice was: Scissor" 
-        pTr.textContent = "You WIN";
-    } else if (vU == "Scissor" && vM == "2"){
-        pOne.textContent = ` The machine select: ${selectMachineValue[1]}` 
-        pTwo.textContent = "Your choice was: Scissor" 
-        pTr.textContent = "ITS A DRAW";
-    }
-}
+  return;
+};
 
-const colors = ["red", "green", "blue"];
+const resetToPlay = () => {
+  const timeoutToReset = setTimeout(() => {
+    btnsUserOption.forEach((btnUserOption) => {
+      btnUserOption.style.pointerEvents = "auto";
+    });
+    textPlay.textContent = "Make your choice now!";
+    textResult.textContent = "Choose an option";
 
-function changeColor(color){
-    color = Math.floor(Math.random() * colors.length);
-    document.querySelector(".header_container").style.border = `.5rem solid ${colors[color]}`;
+    return () => clearTimeout(timeoutToReset);
+  }, 2500);
+};
 
-    document.querySelector(".header_container").style.transition = "border 2s";
-}
-
-setInterval(changeColor,2000); 
-
-
+textResult.addEventListener("DOMSubtreeModified", () => resetToPlay());
