@@ -41,11 +41,7 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 
 ## Video
 
-
-
 https://user-images.githubusercontent.com/99032604/200139528-5923183c-25b0-4d3b-97c6-7348b070eefe.mp4
-
-
 
 ## Documentation
 
