@@ -37,7 +37,7 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Rock,%20paper,%20or%20scissors%20game%20page`
+`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Rock,%20Paper,%20Or%20Scissors%20Game%20Page`
 
 ## Video
 
