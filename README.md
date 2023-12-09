@@ -23,21 +23,9 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 2. CSS3
 3. HTML5
 
-## Galery
-
-![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs2-0.jpg)
-
-![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs2-1.jpg)
-
-![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs2-2.jpg)
-
-![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs2-3.jpg)
-
-![Rock-Paper-Scissors](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/rcs2-4.jpg)
-
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Rock,%20Paper,%20Or%20Scissors%20Game%20Page`
+[`https://www.diegolibonati.com.ar/#/project/91`](https://www.diegolibonati.com.ar/#/project/91)
 
 ## Video
 
