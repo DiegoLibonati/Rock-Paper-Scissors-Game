@@ -72,11 +72,11 @@ const resultOfRound: RoundResult = (userValue, iaValue) => {
 const increaseScore: IncreaseScore = (roundResult) => {
   if (roundResult === Result.Win) {
     scorePlayer.textContent = `${Number(scorePlayer.textContent) + 1}`;
-    return
+    return;
   }
 
   scoreIA.textContent = `${Number(scoreIA.textContent) + 1}`;
-  return
+  return;
 };
 
 const resetToPlay = () => {
@@ -89,8 +89,6 @@ const resetToPlay = () => {
     textResult.textContent = "Choose an option";
     return () => clearTimeout(timeoutToReset);
   }, 2500);
-
- 
 };
 
 textResult.addEventListener("DOMSubtreeModified", () => resetToPlay());

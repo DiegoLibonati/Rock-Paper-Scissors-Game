@@ -19,7 +19,7 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 
 ## Technologies used
 
-1. Javascript
+1. Typescript
 2. CSS3
 3. HTML5
 
