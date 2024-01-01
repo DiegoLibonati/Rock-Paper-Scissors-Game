@@ -13,6 +13,13 @@
 2. Join to the correct path of the clone
 3. Open index.html in your favorite navigator
 
+---
+
+1. Clone the repository
+2. Join to the correct path of the clone
+3. Execute: `yarn install`
+4. Execute: `yarn dev`
+
 ## Description
 
 I made a rock-paper-scissors like web page where the user plays against an AI. The AI is configured to choose randomly by rock, paper, scissors. In case the user wins a victory sign and the AI selection will be shown, in case the user loses the same thing will happen and if the user draws as well.
