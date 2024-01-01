@@ -36,25 +36,28 @@ https://user-images.githubusercontent.com/99032604/200139528-5923183c-25b0-4d3b-
 Here we get all the images and these images have your personal id:
 
 ```
-const btnsUserOption = document.querySelectorAll(".option-to-play");
+const btnsUserOption = document.querySelectorAll(".option-to-play") as NodeList;
 ```
 
-Here we get the two scores and each score has its own personal id:
+Here we get the two scores and each score has its own personal class:
 
 ```
-const scores = document.querySelectorAll(".score");
+const scorePlayer = document.querySelector(
+  ".score_player"
+) as HTMLHeadingElement;
+const scoreIA = document.querySelector(".score_ia") as HTMLHeadingElement;
 ```
 
 Here we get the text in which the result of each round will be displayed:
 
 ```
-const textResult = document.getElementById("text-result");
+const textResult = document.getElementById("text-result") as HTMLHeadingElement;
 ```
 
 Here we get the text which will show when the user will be able to play again:
 
 ```
-const textPlay = document.getElementById("text-play");
+const textPlay = document.getElementById("text-play") as HTMLHeadingElement;
 ```
 
 Here we assign the function getUserChoice to each image when you click on one of them:
@@ -68,23 +71,26 @@ btnsUserOption.forEach((btnUserOption) => {
 This function will be executed every time an image is clicked. We are going to obtain the id of the clicked image that will be the option that the user chose, we obtain the option that the AI chose through obtaining a random value of its Array of game possibilities, then we will execute the function resultOfRound that will return us if the user won, lost or tied. Then the pertinent validations will be made:
 
 ```
-const getUserChoice = (e) => {
-  const optionUserChoice = e.target.id;
+const getUserChoice = (e: Event) => {
+  const target = e.target as HTMLImageElement;
+
+  const optionUserChoice = target?.id;
 
   const optionIaChoice = iaChoice[Math.floor(Math.random() * iaChoice.length)];
 
   const roundResult = resultOfRound(optionUserChoice, optionIaChoice);
 
   btnsUserOption.forEach((btnUserOption) => {
-    btnUserOption.style.pointerEvents = "none";
+    const button = btnUserOption as HTMLImageElement;
+    button.style.pointerEvents = "none";
   });
 
   textPlay.textContent = "";
 
-  if (roundResult && roundResult !== "draw") {
+  if (roundResult === Result.Win) {
     textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | User Win!`;
     increaseScore(roundResult);
-  } else if (!roundResult && roundResult !== "draw") {
+  } else if (roundResult === Result.Lose) {
     textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Ia Win!`;
     increaseScore(roundResult);
   } else {
@@ -96,52 +102,40 @@ const getUserChoice = (e) => {
 This function will return whether the user won, tied or lost depending on the values we pass as parameters:
 
 ```
-const resultOfRound = (userValue, iaValue) => {
-  if (userValue == "rock" && iaValue == "rock") {
-    return "draw";
-  } else if (userValue == "rock" && iaValue == "paper") {
-    return false;
+const resultOfRound: RoundResult = (userValue, iaValue) => {
+  if (userValue == "rock" && iaValue == "paper") {
+    return Result.Lose;
   } else if (userValue == "rock" && iaValue == "scissor") {
-    return true;
+    return Result.Win;
   }
 
   if (userValue == "paper" && iaValue == "rock") {
-    return true;
-  } else if (userValue == "paper" && iaValue == "paper") {
-    return "draw";
+    return Result.Win;
   } else if (userValue == "paper" && iaValue == "scissor") {
-    return false;
+    return Result.Lose;
   }
 
   if (userValue == "scissor" && iaValue == "rock") {
-    return false;
+    return Result.Lose;
   } else if (userValue == "scissor" && iaValue == "paper") {
-    return true;
-  } else if (userValue == "scissor" && iaValue == "scissor") {
-    return "draw";
+    return Result.Win;
   }
+
+  return Result.Draw;
 };
 ```
 
 This function increments the score of the user or the ia depending on who won in case of a tie it will not return anything or do anything:
 
 ```
-const increaseScore = (roundResult) => {
-  if (roundResult && roundResult !== "draw") {
-    for (const element of scores) {
-      if (element.id === `user-score`) {
-        element.textContent = `${parseInt(element.textContent) + 1}`;
-      }
-    }
-  } else if (!roundResult && roundResult !== "draw") {
-    for (const element of scores) {
-      if (element.id === `ia-score`) {
-        element.textContent = `${parseInt(element.textContent) + 1}`;
-      }
-    }
+const increaseScore: IncreaseScore = (roundResult) => {
+  if (roundResult === Result.Win) {
+    scorePlayer.textContent = `${Number(scorePlayer.textContent) + 1}`;
+    return
   }
 
-  return;
+  scoreIA.textContent = `${Number(scoreIA.textContent) + 1}`;
+  return
 };
 ```
 
@@ -157,11 +151,11 @@ This function returns all values that are not the default scores after 2.5 minut
 const resetToPlay = () => {
   const timeoutToReset = setTimeout(() => {
     btnsUserOption.forEach((btnUserOption) => {
-      btnUserOption.style.pointerEvents = "auto";
+      const button = btnUserOption as HTMLImageElement;
+      button.style.pointerEvents = "auto";
     });
     textPlay.textContent = "Make your choice now!";
     textResult.textContent = "Choose an option";
-
     return () => clearTimeout(timeoutToReset);
   }, 2500);
 };
