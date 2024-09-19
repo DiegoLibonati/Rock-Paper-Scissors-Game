@@ -1,4 +1,4 @@
-# Rock-Paper-Scissors-Game-Page
+# Rock Paper Scissors Game
 
 ## Getting Started
 
@@ -32,7 +32,7 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/91`](https://www.diegolibonati.com.ar/#/project/91)
+[`https://www.diegolibonati.com.ar/#/project/Rock-Paper-Scissors-Game`](https://www.diegolibonati.com.ar/#/project/Rock-Paper-Scissors-Game)
 
 ## Video
 
