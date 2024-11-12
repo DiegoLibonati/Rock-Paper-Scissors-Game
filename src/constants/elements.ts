@@ -4,17 +4,9 @@ export const imgsUserOptions = document.querySelectorAll(
 ) as NodeList;
 
 // Scores
-export const scorePlayer = document.querySelector(
-  ".score_player"
-) as HTMLHeadingElement;
-export const scoreIA = document.querySelector(
-  ".score_ia"
-) as HTMLHeadingElement;
+export const scorePlayer = document.querySelector(".score_player") as Node;
+export const scoreIA = document.querySelector(".score_ia") as Node;
 
 // Texts
-export const textResult = document.getElementById(
-  "text-result"
-) as HTMLHeadingElement;
-export const textPlay = document.getElementById(
-  "text-play"
-) as HTMLHeadingElement;
+export const textResult = document.getElementById("text-result") as Node;
+export const textPlay = document.getElementById("text-play") as Node;

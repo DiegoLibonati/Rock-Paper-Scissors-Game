@@ -1,7 +1,8 @@
-import { RoundResult } from "./entities/vite-env.d";
 import { Result } from "./entities/enums.d";
 
 import { INDEX_STATE } from "./states/indexState";
+
+import { getResult } from "./helpers/getResult";
 
 import {
   imgsUserOptions,
@@ -15,20 +16,13 @@ const iaChoice = INDEX_STATE.iaChoice;
 
 let timeout: NodeJS.Timeout;
 
-export const getUserChoice = (
-  e: Event,
-  imgsUserOptions: NodeList | HTMLImageElement[],
-  textPlay: HTMLHeadingElement,
-  textResult: HTMLHeadingElement,
-  scorePlayer: HTMLHeadingElement,
-  scoreIA: HTMLHeadingElement
-): void => {
+const getUserChoice = (e: Event): void => {
   const target = e.target as HTMLImageElement;
 
   const optionUserChoice = target?.id;
   const optionIaChoice = iaChoice[Math.floor(Math.random() * iaChoice.length)];
 
-  const userResult = resultOfUser(optionUserChoice, optionIaChoice);
+  const userResult = getResult(optionUserChoice, optionIaChoice);
 
   imgsUserOptions.forEach((btnUserOption) => {
     const button = btnUserOption as HTMLImageElement;
@@ -52,29 +46,7 @@ export const getUserChoice = (
   textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Draw!`;
 };
 
-export const resultOfUser: RoundResult = (userValue, iaValue) => {
-  if (
-    (userValue == "rock" && iaValue == "scissor") ||
-    (userValue == "paper" && iaValue == "rock") ||
-    (userValue == "scissor" && iaValue == "paper")
-  )
-    return Result.Win;
-
-  if (
-    (userValue == "rock" && iaValue == "paper") ||
-    (userValue == "paper" && iaValue == "scissor") ||
-    (userValue == "scissor" && iaValue == "rock")
-  )
-    return Result.Lose;
-
-  return Result.Draw;
-};
-
-export const resetToPlay = (
-  imgsUserOptions: NodeList | HTMLImageElement[],
-  textPlay: HTMLHeadingElement,
-  textResult: HTMLHeadingElement
-) => {
+const resetToPlay = () => {
   timeout = setTimeout(() => {
     if (textResult.textContent === "Choose an option")
       return clearTimeout(timeout!);
@@ -90,22 +62,14 @@ export const resetToPlay = (
   }, 2500);
 };
 
-imgsUserOptions.forEach((imgUserOption: Node) => {
-  imgUserOption.addEventListener("click", (e) =>
-    getUserChoice(
-      e,
-      imgsUserOptions,
-      textPlay,
-      textResult,
-      scorePlayer,
-      scoreIA
-    )
-  );
-});
+const onInit = () => {
+  imgsUserOptions.forEach((imgUserOption: Node) => {
+    imgUserOption.addEventListener("click", (e) => getUserChoice(e));
+  });
 
-if (textResult)
-  new MutationObserver(() =>
-    resetToPlay(imgsUserOptions, textPlay, textResult)
-  ).observe(textResult, {
+  new MutationObserver(() => resetToPlay()).observe(textResult, {
     childList: true,
   });
+};
+
+document.addEventListener("DOMContentLoaded", onInit);
