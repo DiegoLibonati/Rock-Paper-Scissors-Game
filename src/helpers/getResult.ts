@@ -1,4 +1,4 @@
-import { Result } from "../entities/enums";
+import { Result } from "../entities/enums.d";
 import { RoundResult } from "../entities/vite-env";
 
 export const getResult: RoundResult = (userValue, iaValue) => {
