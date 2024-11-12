@@ -43,127 +43,151 @@ https://user-images.githubusercontent.com/99032604/200139528-5923183c-25b0-4d3b-
 Here we get all the images and these images have your personal id:
 
 ```
-const btnsUserOption = document.querySelectorAll(".option-to-play") as NodeList;
+export const imgsUserOptions = document.querySelectorAll(
+  ".option-to-play"
+) as NodeList;
 ```
 
 Here we get the two scores and each score has its own personal class:
 
 ```
-const scorePlayer = document.querySelector(
+export const scorePlayer = document.querySelector(
   ".score_player"
 ) as HTMLHeadingElement;
-const scoreIA = document.querySelector(".score_ia") as HTMLHeadingElement;
+export const scoreIA = document.querySelector(
+  ".score_ia"
+) as HTMLHeadingElement;
 ```
 
 Here we get the text in which the result of each round will be displayed:
 
 ```
-const textResult = document.getElementById("text-result") as HTMLHeadingElement;
+export const textResult = document.getElementById(
+  "text-result"
+) as HTMLHeadingElement;
 ```
 
 Here we get the text which will show when the user will be able to play again:
 
 ```
-const textPlay = document.getElementById("text-play") as HTMLHeadingElement;
+export const textPlay = document.getElementById(
+  "text-play"
+) as HTMLHeadingElement;
 ```
 
 Here we assign the function getUserChoice to each image when you click on one of them:
 
 ```
-btnsUserOption.forEach((btnUserOption) => {
-  btnUserOption.addEventListener("click", (e) => getUserChoice(e));
+imgsUserOptions.forEach((imgUserOption: Node) => {
+  imgUserOption.addEventListener("click", (e) =>
+    getUserChoice(
+      e,
+      imgsUserOptions,
+      textPlay,
+      textResult,
+      scorePlayer,
+      scoreIA
+    )
+  );
 });
 ```
 
 This function will be executed every time an image is clicked. We are going to obtain the id of the clicked image that will be the option that the user chose, we obtain the option that the AI chose through obtaining a random value of its Array of game possibilities, then we will execute the function resultOfRound that will return us if the user won, lost or tied. Then the pertinent validations will be made:
 
 ```
-const getUserChoice = (e: Event) => {
+export const getUserChoice = (
+  e: Event,
+  imgsUserOptions: NodeList | HTMLImageElement[],
+  textPlay: HTMLHeadingElement,
+  textResult: HTMLHeadingElement,
+  scorePlayer: HTMLHeadingElement,
+  scoreIA: HTMLHeadingElement
+): void => {
   const target = e.target as HTMLImageElement;
 
   const optionUserChoice = target?.id;
-
   const optionIaChoice = iaChoice[Math.floor(Math.random() * iaChoice.length)];
 
-  const roundResult = resultOfRound(optionUserChoice, optionIaChoice);
+  const userResult = resultOfUser(optionUserChoice, optionIaChoice);
 
-  btnsUserOption.forEach((btnUserOption) => {
+  imgsUserOptions.forEach((btnUserOption) => {
     const button = btnUserOption as HTMLImageElement;
     button.style.pointerEvents = "none";
   });
 
   textPlay.textContent = "";
 
-  if (roundResult === Result.Win) {
+  if (userResult === Result.Win) {
     textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | User Win!`;
-    increaseScore(roundResult);
-  } else if (roundResult === Result.Lose) {
-    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Ia Win!`;
-    increaseScore(roundResult);
-  } else {
-    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Draw!`;
+    scorePlayer.textContent = `${Number(scorePlayer.textContent) + 1}`;
+    return;
   }
+
+  if (userResult === Result.Lose) {
+    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Ia Win!`;
+    scoreIA.textContent = `${Number(scoreIA.textContent) + 1}`;
+    return;
+  }
+
+  textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Draw!`;
 };
 ```
 
 This function will return whether the user won, tied or lost depending on the values we pass as parameters:
 
 ```
-const resultOfRound: RoundResult = (userValue, iaValue) => {
-  if (userValue == "rock" && iaValue == "paper") {
-    return Result.Lose;
-  } else if (userValue == "rock" && iaValue == "scissor") {
+export const resultOfUser: RoundResult = (userValue, iaValue) => {
+  if (
+    (userValue == "rock" && iaValue == "scissor") ||
+    (userValue == "paper" && iaValue == "rock") ||
+    (userValue == "scissor" && iaValue == "paper")
+  )
     return Result.Win;
-  }
 
-  if (userValue == "paper" && iaValue == "rock") {
-    return Result.Win;
-  } else if (userValue == "paper" && iaValue == "scissor") {
+  if (
+    (userValue == "rock" && iaValue == "paper") ||
+    (userValue == "paper" && iaValue == "scissor") ||
+    (userValue == "scissor" && iaValue == "rock")
+  )
     return Result.Lose;
-  }
-
-  if (userValue == "scissor" && iaValue == "rock") {
-    return Result.Lose;
-  } else if (userValue == "scissor" && iaValue == "paper") {
-    return Result.Win;
-  }
 
   return Result.Draw;
-};
-```
-
-This function increments the score of the user or the ia depending on who won in case of a tie it will not return anything or do anything:
-
-```
-const increaseScore: IncreaseScore = (roundResult) => {
-  if (roundResult === Result.Win) {
-    scorePlayer.textContent = `${Number(scorePlayer.textContent) + 1}`;
-    return
-  }
-
-  scoreIA.textContent = `${Number(scoreIA.textContent) + 1}`;
-  return
 };
 ```
 
 Each time the element containing the result changes, resetToPlay will be executed:
 
 ```
-textResult.addEventListener("DOMSubtreeModified", () => resetToPlay());
+if (textResult)
+  new MutationObserver(() =>
+    resetToPlay(imgsUserOptions, textPlay, textResult)
+  ).observe(textResult, {
+    childList: true,
+  });
 ```
 
 This function returns all values that are not the default scores after 2.5 minutes:
 
 ```
-const resetToPlay = () => {
-  const timeoutToReset = setTimeout(() => {
-    btnsUserOption.forEach((btnUserOption) => {
-      const button = btnUserOption as HTMLImageElement;
-      button.style.pointerEvents = "auto";
+let timeout: NodeJS.Timeout;
+
+export const resetToPlay = (
+  imgsUserOptions: NodeList | HTMLImageElement[],
+  textPlay: HTMLHeadingElement,
+  textResult: HTMLHeadingElement
+) => {
+  timeout = setTimeout(() => {
+    if (textResult.textContent === "Choose an option")
+      return clearTimeout(timeout!);
+
+    if (timeout) clearTimeout(timeout);
+
+    imgsUserOptions.forEach((imgUserOption) => {
+      const img = imgUserOption as HTMLImageElement;
+      img.style.pointerEvents = "auto";
     });
     textPlay.textContent = "Make your choice now!";
     textResult.textContent = "Choose an option";
-    return () => clearTimeout(timeoutToReset);
   }, 2500);
 };
 ```
