@@ -1,37 +1,19 @@
+import "@testing-library/jest-dom";
 import { screen } from "@testing-library/dom";
 
-const INITIAL_HTML = `
-  <h2 id="text-play">Make your choice now!</h2>
-  <h2 id="text-result">Choose an option</h2>
+import fs from "fs";
+import path from "path";
 
-  <h3 class="score_player" id="user-score">0</h3>
-  <h3 class="score_ia" id="ia-score">0</h3>
-
-  <div class="game_container_choices">
-    <img
-        src="./src/assets/rock.png"
-        alt="roca"
-        class="option-to-play"
-        id="rock"
-    />
-    <img
-        src="./src/assets/paper.png"
-        alt="papel"
-        class="option-to-play"
-        id="paper"
-    />
-    <img
-        src="./src/assets/tijera.png"
-        alt="tijera"
-        class="option-to-play"
-        id="scissor"
-    />
-  </div>
-`;
+const INITIAL_HTML: string = fs.readFileSync(
+  path.resolve(__dirname, "../index.html"),
+  "utf8"
+);
 
 beforeEach(() => {
   jest.resetModules();
-  document.body.innerHTML = INITIAL_HTML;
+  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
+
+  document.body.innerHTML = body;
   require("./index.ts");
   document.dispatchEvent(new Event("DOMContentLoaded"));
 });

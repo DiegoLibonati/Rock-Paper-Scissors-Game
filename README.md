@@ -30,6 +30,15 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 2. CSS3
 3. HTML5
 
+## Libraries used
+
+1. @testing-library/dom
+2. @testing-library/jest-dom
+3. @types/jest
+4. jest
+5. jest-environment-jsdom
+6. ts-jest
+
 ## Portfolio Link
 
 [`https://www.diegolibonati.com.ar/#/project/Rock-Paper-Scissors-Game`](https://www.diegolibonati.com.ar/#/project/Rock-Paper-Scissors-Game)
