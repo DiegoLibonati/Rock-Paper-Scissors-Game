@@ -38,6 +38,12 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 
 https://user-images.githubusercontent.com/99032604/200139528-5923183c-25b0-4d3b-97c6-7348b070eefe.mp4
 
+## Testing
+
+1. Join to the correct path of the clone
+2. Execute: `yarn install`
+3. Execute: `yarn test`
+
 ## Documentation
 
 Here we get all the images and these images have your personal id:
