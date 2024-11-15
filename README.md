@@ -32,12 +32,16 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 
 ## Libraries used
 
-1. @testing-library/dom
-2. @testing-library/jest-dom
-3. @types/jest
-4. jest
-5. jest-environment-jsdom
-6. ts-jest
+```
+"@testing-library/dom": "^10.4.0",
+"@testing-library/jest-dom": "^6.6.3",
+"@types/jest": "^29.5.14",
+"jest": "^29.7.0",
+"jest-environment-jsdom": "^29.7.0",
+"ts-jest": "^29.2.5",
+"typescript": "^5.2.2",
+"vite": "^5.0.8"
+```
 
 ## Portfolio Link
 
