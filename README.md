@@ -41,12 +41,13 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 #### devDependencies
 
 ```
-"@testing-library/dom": "^10.4.0",
-"@testing-library/jest-dom": "^6.6.3",
-"jest": "^29.7.0",
-"jest-environment-jsdom": "^29.7.0",
-"ts-jest": "^29.2.5",
-"typescript": "^5.2.2",
+"@testing-library/dom": "^10.4.0"
+"@testing-library/jest-dom": "^6.6.3"
+"jest": "^29.7.0"
+"jest-environment-jsdom": "^29.7.0"
+"ts-jest": "^29.2.5"
+"jest-fixed-jsdom": "^0.0.9"
+"typescript": "^5.2.2"
 "vite": "^5.0.8"
 ```
 
