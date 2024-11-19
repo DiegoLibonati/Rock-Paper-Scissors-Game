@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/dom";
+import user from "@testing-library/user-event";
 
 import fs from "fs";
 import path from "path";
@@ -21,7 +22,7 @@ afterEach(() => {
   document.body.innerHTML = "";
 });
 
-it("should update the result text and score when user or ia wins", () => {
+it("should update the result text and score when user or ia wins", async () => {
   const imgsUserOptions = screen.getAllByRole("img") as HTMLImageElement[];
   const textPlay = screen.getByRole("heading", {
     name: /make your choice now!/i,
@@ -48,7 +49,7 @@ it("should update the result text and score when user or ia wins", () => {
   const rock = imgsUserOptions.find(
     (img) => img.id === "rock"
   ) as HTMLImageElement;
-  rock?.click();
+  await user.click(rock);
 
   expect(textPlay).toHaveTextContent("");
   expect(textResult).not.toBe("choose an option");
@@ -73,6 +74,7 @@ it("should update the result text and score when user or ia wins", () => {
 });
 
 it("It must change the pointerEvent of each image, update the textPlay and textResult text after 2500 seconds.", async () => {
+  const userEvent = user.setup({ delay: null });
   jest.useFakeTimers();
 
   const imgsUserOptions = screen.getAllByRole("img") as HTMLImageElement[];
@@ -93,7 +95,7 @@ it("It must change the pointerEvent of each image, update the textPlay and textR
   const rock = imgsUserOptions.find(
     (img) => img.id === "rock"
   ) as HTMLImageElement;
-  rock?.click();
+  await userEvent.click(rock);
 
   expect(textPlay.textContent).not.toBe("Make your choice now!");
   expect(textResult.textContent).not.toBe("Choose an option");
