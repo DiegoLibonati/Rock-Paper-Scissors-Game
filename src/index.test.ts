@@ -74,7 +74,9 @@ it("should update the result text and score when user or ia wins", async () => {
 });
 
 it("It must change the pointerEvent of each image, update the textPlay and textResult text after 2500 seconds.", async () => {
-  const userEvent = user.setup({ delay: null });
+  const userEvent = user.setup({
+    advanceTimers: jest.advanceTimersByTime,
+  });
   jest.useFakeTimers();
 
   const imgsUserOptions = screen.getAllByRole("img") as HTMLImageElement[];
