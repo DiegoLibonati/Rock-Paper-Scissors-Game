@@ -50,4 +50,4 @@ https://user-images.githubusercontent.com/99032604/200139528-5923183c-25b0-4d3b-
 ## Testing
 
 1. Join to the correct path of the clone
-2. Execute: `yarn test`
+2. Execute: `yarn test` or `npm test`
