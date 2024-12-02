@@ -3,20 +3,16 @@ import { Result } from "./entities/enums.d";
 import { INDEX_STATE } from "./states/indexState";
 
 import { getResult } from "./helpers/getResult";
-
-import {
-  imgsUserOptions,
-  scoreIA,
-  scorePlayer,
-  textPlay,
-  textResult,
-} from "./constants/elements";
+import { getElements } from "./helpers/getElements";
 
 const iaChoice = INDEX_STATE.iaChoice;
 
 let timeout: NodeJS.Timeout;
 
 const getUserChoice = (e: Event): void => {
+  const { imgsUserOptions, scoreIA, scorePlayer, textPlay, textResult } =
+    getElements();
+
   const target = e.target as HTMLImageElement;
 
   const optionUserChoice = target?.id;
@@ -47,6 +43,8 @@ const getUserChoice = (e: Event): void => {
 };
 
 const resetToPlay = () => {
+  const { textResult, imgsUserOptions, textPlay } = getElements();
+
   timeout = setTimeout(() => {
     if (textResult.textContent === "Choose an option")
       return clearTimeout(timeout!);
@@ -63,9 +61,11 @@ const resetToPlay = () => {
 };
 
 const onInit = () => {
-  imgsUserOptions.forEach((imgUserOption: Node) => {
-    imgUserOption.addEventListener("click", (e) => getUserChoice(e));
-  });
+  const { textResult, imgsUserOptions } = getElements();
+
+  imgsUserOptions.forEach((imgUserOption: Node) =>
+    imgUserOption.addEventListener("click", (e) => getUserChoice(e))
+  );
 
   new MutationObserver(() => resetToPlay()).observe(textResult, {
     childList: true,

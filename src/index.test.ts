@@ -10,19 +10,28 @@ const INITIAL_HTML: string = fs.readFileSync(
 );
 
 beforeEach(() => {
+  jest.useFakeTimers();
   jest.resetModules();
-  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
 
+  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
   document.body.innerHTML = body;
+
   require("./index.ts");
   document.dispatchEvent(new Event("DOMContentLoaded"));
 });
 
 afterEach(() => {
+  jest.runOnlyPendingTimers();
+  jest.useRealTimers();
+
   document.body.innerHTML = "";
 });
 
-it("should update the result text and score when user or ia wins", async () => {
+test("It should update the result text and score when user or ia wins", async () => {
+  const userEvent = user.setup({
+    advanceTimers: jest.advanceTimersByTime,
+  });
+
   const imgsUserOptions = screen.getAllByRole("img") as HTMLImageElement[];
   const textPlay = screen.getByRole("heading", {
     name: /make your choice now!/i,
@@ -49,7 +58,7 @@ it("should update the result text and score when user or ia wins", async () => {
   const rock = imgsUserOptions.find(
     (img) => img.id === "rock"
   ) as HTMLImageElement;
-  await user.click(rock);
+  await userEvent.click(rock);
 
   expect(textPlay).toHaveTextContent("");
   expect(textResult).not.toBe("choose an option");
@@ -73,11 +82,10 @@ it("should update the result text and score when user or ia wins", async () => {
   }
 });
 
-it("It must change the pointerEvent of each image, update the textPlay and textResult text after 2500 seconds.", async () => {
+test("It must change the pointerEvent of each image, update the textPlay and textResult text after 2500 seconds.", async () => {
   const userEvent = user.setup({
     advanceTimers: jest.advanceTimersByTime,
   });
-  jest.useFakeTimers();
 
   const imgsUserOptions = screen.getAllByRole("img") as HTMLImageElement[];
   const textPlay = screen.getByRole("heading", {
@@ -110,6 +118,4 @@ it("It must change the pointerEvent of each image, update the textPlay and textR
 
   expect(textPlay.textContent).toBe("Make your choice now!");
   expect(textResult.textContent).toBe("Choose an option");
-
-  jest.useRealTimers();
 });
