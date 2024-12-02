@@ -5,7 +5,6 @@ import { OFFICIAL_BODY } from "./tests/jest.setup";
 
 beforeEach(() => {
   jest.useFakeTimers();
-  jest.resetModules();
 
   document.body.innerHTML = OFFICIAL_BODY;
 
