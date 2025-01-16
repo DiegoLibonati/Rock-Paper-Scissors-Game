@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock - Paper - Scissors</title>
 
+    <link rel="stylesheet" type="text/css" href="./src/index.css" />
     <link rel="stylesheet" type="text/css" href="./src/styles.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,39 +17,39 @@
     />
   </head>
   <body>
-    <main class="main_container">
-      <section class="section_container">
-        <article class="header_container">
-          <div class="header_container_score">
+    <main class="main">
+      <section class="section">
+        <article class="header">
+          <div class="header__score">
             <h2>Player</h2>
-            <h3 class="score_player" id="user-score">0</h3>
+            <h3 class="score__player" id="user-score">0</h3>
           </div>
-          <div class="header_container_score">
+          <div class="header__score">
             <h2>Computer</h2>
-            <h3 class="score_ia" id="ia-score">0</h3>
+            <h3 class="score__ia" id="ia-score">0</h3>
           </div>
         </article>
 
-        <article class="game_container">
+        <article class="game">
           <h2 id="text-result">Choose an option</h2>
 
-          <div class="game_container_choices">
+          <div class="game__choices">
             <img
               src="./src/assets/rock.png"
               alt="roca"
-              class="option-to-play"
+              class="option__play"
               id="rock"
             />
             <img
               src="./src/assets/paper.png"
               alt="papel"
-              class="option-to-play"
+              class="option__play"
               id="paper"
             />
             <img
               src="./src/assets/tijera.png"
               alt="tijera"
-              class="option-to-play"
+              class="option__play"
               id="scissor"
             />
           </div>
