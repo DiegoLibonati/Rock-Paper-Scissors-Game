@@ -1,10 +1,4 @@
-body {
-  width: 100%;
-  height: 100%;
-  background-color: var(--primary-color);
-}
-
-.main {
+.game-main {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,37 +6,6 @@ body {
   width: 100%;
   height: 100%;
   padding: 0.625rem;
-}
-
-.section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: column wrap;
-  width: 100%;
-  height: auto;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-flow: row wrap;
-  width: 100%;
-  height: auto;
-  margin: 1.25rem 0 1.25rem 0;
-  text-align: center;
-}
-
-.header h2 {
-  font-size: 1.563rem;
-  color: var(--white-color);
-}
-
-.header h3 {
-  font-size: 1.25rem;
-  margin-top: 0.625rem;
-  color: var(--white-color);
 }
 
 .game {
@@ -54,14 +17,47 @@ body {
   height: auto;
 }
 
-.game h2 {
+.game__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  width: 100%;
+  height: auto;
+  margin: 1.25rem 0 1.25rem 0;
+  text-align: center;
+}
+
+.game__header-player-name,
+.game__header-ia-name {
+  font-size: 1.563rem;
+  color: var(--white-color);
+}
+
+.game__header-user-score, .game__header-ia-score {
+  font-size: 1.25rem;
+  margin-top: 0.625rem;
+  color: var(--white-color);
+}
+
+.game__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 100%;
+  height: auto;
+}
+
+.game__content-title,
+.game__content-description {
   font-size: 1.563rem;
   text-align: center;
   margin: 1.25rem 0 1.25rem 0;
   color: var(--white-color);
 }
 
-.game__choices {
+.game__content-choices {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,7 +66,7 @@ body {
   height: auto;
 }
 
-.game__choices img {
+.game__content-choice {
   width: 12.5rem;
   height: 12.5rem;
   border-radius: 50%;
@@ -80,7 +76,7 @@ body {
 }
 
 @media only screen and (min-width: 768px) {
-  .section {
+  .game {
     width: 43.75rem;
     position: absolute;
     top: 0;
@@ -90,7 +86,7 @@ body {
     margin: auto;
   }
 
-  .game__choices {
+  .game__content-choices {
     justify-content: space-between;
   }
 }

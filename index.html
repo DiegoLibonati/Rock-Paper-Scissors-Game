@@ -17,44 +17,46 @@
     />
   </head>
   <body>
-    <main class="main">
-      <section class="section">
-        <article class="header">
-          <div class="header__score">
-            <h2>Player</h2>
-            <h3 class="score__player" id="user-score">0</h3>
+    <main class="game-main">
+      <section class="game">
+        <article class="game__header">
+          <div class="game__header-score">
+            <h2 class="game__header-player-name">Player</h2>
+            <h3 class="game__header-user-score" id="user-score">0</h3>
           </div>
-          <div class="header__score">
-            <h2>Computer</h2>
-            <h3 class="score__ia" id="ia-score">0</h3>
+          <div class="game__header-score">
+            <h2 class="game__header-ia-name">Computer</h2>
+            <h3 class="game__header-ia-score" id="ia-score">0</h3>
           </div>
         </article>
 
-        <article class="game">
-          <h2 id="text-result">Choose an option</h2>
+        <article class="game__content">
+          <h2 id="text-result" class="game__content-title">Choose an option</h2>
 
-          <div class="game__choices">
+          <div class="game__content-choices">
             <img
               src="./src/assets/rock.png"
               alt="roca"
-              class="option__play"
+              class="game__content-choice"
               id="rock"
             />
             <img
               src="./src/assets/paper.png"
               alt="papel"
-              class="option__play"
+              class="game__content-choice"
               id="paper"
             />
             <img
               src="./src/assets/tijera.png"
               alt="tijera"
-              class="option__play"
+              class="game__content-choice"
               id="scissor"
             />
           </div>
 
-          <h2 id="text-play">Make your choice now!</h2>
+          <h2 id="text-play" class="game__content-description">
+            Make your choice now!
+          </h2>
         </article>
       </section>
     </main>
