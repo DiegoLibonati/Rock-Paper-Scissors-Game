@@ -28,13 +28,13 @@
   text-align: center;
 }
 
-.game__header-player-name,
-.game__header-ia-name {
+.game__player-name,
+.game__ia-name {
   font-size: 1.563rem;
   color: var(--white-color);
 }
 
-.game__header-user-score, .game__header-ia-score {
+.game__player-score, .game__ia-score {
   font-size: 1.25rem;
   margin-top: 0.625rem;
   color: var(--white-color);
@@ -49,15 +49,15 @@
   height: auto;
 }
 
-.game__content-title,
-.game__content-description {
+.game__result-text,
+.game__description {
   font-size: 1.563rem;
   text-align: center;
   margin: 1.25rem 0 1.25rem 0;
   color: var(--white-color);
 }
 
-.game__content-choices {
+.game__choices {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,7 +66,7 @@
   height: auto;
 }
 
-.game__content-choice {
+.game__choice {
   width: 12.5rem;
   height: 12.5rem;
   border-radius: 50%;
@@ -86,7 +86,7 @@
     margin: auto;
   }
 
-  .game__content-choices {
+  .game__choices {
     justify-content: space-between;
   }
 }
