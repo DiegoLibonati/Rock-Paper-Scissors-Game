@@ -22,7 +22,7 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 #### Dependencies
 
 ```
-"@types/jest": "^29.5.14"
+There are no dependencies.
 ```
 
 #### devDependencies
@@ -31,6 +31,7 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 "@testing-library/dom": "^10.4.0"
 "@testing-library/jest-dom": "^6.6.3"
 "@testing-library/user-event": "^14.5.2"
+"@types/jest": "^29.5.14"
 "jest": "^29.7.0"
 "jest-environment-jsdom": "^29.7.0"
 "ts-jest": "^29.2.5"
