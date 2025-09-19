@@ -1,4 +1,4 @@
-import { IAChoice } from "./vite-env";
+import { IAChoice } from "@src/entities/vite-env";
 
 // Types
 

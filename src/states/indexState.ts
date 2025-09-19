@@ -1,4 +1,4 @@
-import { IndexState } from "../entities/index-state";
+import { IndexState } from "@src/entities/index-state";
 
 // State
 

@@ -1,6 +1,6 @@
-import { Result } from "../entities/enums.d";
+import { Result } from "@src/entities/enums.d";
 
-import { getResult } from "./getResult";
+import { getResult } from "@src/helpers/getResult";
 
 describe("getResult.ts", () => {
   describe("General Tests.", () => {

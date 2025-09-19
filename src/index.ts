@@ -1,9 +1,9 @@
-import { Result } from "./entities/enums.d";
+import { Result } from "@src/entities/enums.d";
 
-import { INDEX_STATE } from "./states/indexState";
+import { INDEX_STATE } from "@src/states/indexState";
 
-import { getResult } from "./helpers/getResult";
-import { getElements } from "./helpers/getElements";
+import { getResult } from "@src/helpers/getResult";
+import { getElements } from "@src/helpers/getElements";
 
 const iaChoice = INDEX_STATE.iaChoice;
 
