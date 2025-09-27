@@ -22,6 +22,7 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 1. Typescript
 2. CSS3
 3. HTML5
+4. Vite
 
 ## Libraries used
 
