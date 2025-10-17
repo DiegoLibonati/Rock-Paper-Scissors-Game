@@ -1,4 +1,4 @@
-import { Result } from "@src/entities/enums.d";
+import { Result } from "@src/entities/enums";
 
 import { getResult } from "@src/helpers/getResult";
 

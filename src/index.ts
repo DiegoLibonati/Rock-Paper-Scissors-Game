@@ -1,75 +1,9 @@
-import { Result } from "@src/entities/enums.d";
-
-import { INDEX_STATE } from "@src/states/indexState";
-
-import { getResult } from "@src/helpers/getResult";
-import { getElements } from "@src/helpers/getElements";
-
-const iaChoice = INDEX_STATE.iaChoice;
-
-let timeout: NodeJS.Timeout;
-
-const getUserChoice = (e: Event): void => {
-  const { imgsUserOptions, scoreIA, scorePlayer, textPlay, textResult } =
-    getElements();
-
-  const target = e.target as HTMLImageElement;
-
-  const optionUserChoice = target?.id;
-  const optionIaChoice = iaChoice[Math.floor(Math.random() * iaChoice.length)];
-
-  const userResult = getResult(optionUserChoice, optionIaChoice);
-
-  imgsUserOptions.forEach((btnUserOption) => {
-    const button = btnUserOption as HTMLImageElement;
-    button.style.pointerEvents = "none";
-  });
-
-  textPlay.textContent = "";
-
-  if (userResult === Result.Win) {
-    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | User Win!`;
-    scorePlayer.textContent = `${Number(scorePlayer.textContent) + 1}`;
-    return;
-  }
-
-  if (userResult === Result.Lose) {
-    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Ia Win!`;
-    scoreIA.textContent = `${Number(scoreIA.textContent) + 1}`;
-    return;
-  }
-
-  textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Draw!`;
-};
-
-const resetToPlay = () => {
-  const { textResult, imgsUserOptions, textPlay } = getElements();
-
-  timeout = setTimeout(() => {
-    if (textResult.textContent === "Choose an option")
-      return clearTimeout(timeout!);
-
-    if (timeout) clearTimeout(timeout);
-
-    imgsUserOptions.forEach((imgUserOption) => {
-      const img = imgUserOption as HTMLImageElement;
-      img.style.pointerEvents = "auto";
-    });
-    textPlay.textContent = "Make your choice now!";
-    textResult.textContent = "Choose an option";
-  }, 2500);
-};
+import { RockPaperScissorsPage } from "@src/pages/RockPaperScissorsPage/RockPaperScissorsPage";
 
 const onInit = () => {
-  const { textResult, imgsUserOptions } = getElements();
-
-  imgsUserOptions.forEach((imgUserOption: Node) =>
-    imgUserOption.addEventListener("click", (e) => getUserChoice(e))
-  );
-
-  new MutationObserver(() => resetToPlay()).observe(textResult, {
-    childList: true,
-  });
+  const app = document.querySelector<HTMLDivElement>("#app")!;
+  const rockPaperScissorsPage = RockPaperScissorsPage();
+  app.appendChild(rockPaperScissorsPage);
 };
 
 document.addEventListener("DOMContentLoaded", onInit);

@@ -1,5 +1,5 @@
-import { Result } from "@src/entities/enums.d";
-import { RoundResult } from "@src/entities/vite-env";
+import { Result } from "@src/entities/enums";
+import { RoundResult } from "@src/entities/helpers";
 
 export const getResult: RoundResult = (userValue, iaValue) => {
   if (

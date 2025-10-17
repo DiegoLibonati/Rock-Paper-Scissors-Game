@@ -1,0 +1,8 @@
+.game__choice {
+  width: 12.5rem;
+  height: 12.5rem;
+  border-radius: 50%;
+  border: 0.125rem solid #fff;
+  margin: 0.625rem 0 0.625rem 0;
+  cursor: pointer;
+}
