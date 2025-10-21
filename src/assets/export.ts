@@ -1,9 +1,9 @@
-import PaperPng from "@src/assets/pngs/paper.png";
-import RockPng from "@src/assets/pngs/rock.png";
-import TijeraPng from "@src/assets/pngs/tijera.png";
+import PaperPng from "@src/assets/images/paper.png";
+import RockPng from "@src/assets/images/rock.png";
+import TijeraPng from "@src/assets/images/tijera.png";
 
 const assets = {
-  pngs: {
+  images: {
     PaperPng: PaperPng,
     RockPng: RockPng,
     TijeraPng: TijeraPng,

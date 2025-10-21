@@ -114,19 +114,19 @@ export const RockPaperScissorsPage = (): HTMLElement => {
   const rock = Choice({
     id: "rock",
     name: "roca",
-    srcImg: assets.pngs.RockPng,
+    srcImg: assets.images.RockPng,
     onClick: (e) => getUserChoice(e),
   });
   const paper = Choice({
     id: "paper",
     name: "papel",
-    srcImg: assets.pngs.PaperPng,
+    srcImg: assets.images.PaperPng,
     onClick: (e) => getUserChoice(e),
   });
   const scissor = Choice({
     id: "scissor",
     name: "tijera",
-    srcImg: assets.pngs.TijeraPng,
+    srcImg: assets.images.TijeraPng,
     onClick: (e) => getUserChoice(e),
   });
 
