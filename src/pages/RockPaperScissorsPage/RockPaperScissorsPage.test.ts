@@ -39,7 +39,7 @@ describe("RockPaperScissorsPage.ts", () => {
 
       expect(container).toBeInstanceOf(HTMLElement);
       expect(container.className).toBe("game-main");
-      expect(container.querySelector(".game")).toBeInTheDocument();
+      expect(container.querySelector<HTMLElement>(".game")).toBeInTheDocument();
     });
 
     test("It should render header with player and computer sections", () => {
@@ -47,8 +47,9 @@ describe("RockPaperScissorsPage.ts", () => {
 
       const playerName = screen.getByText("Player");
       const computerName = screen.getByText("Computer");
-      const playerScore = document.getElementById("user-score");
-      const iaScore = document.getElementById("ia-score");
+      const playerScore =
+        document.querySelector<HTMLHeadingElement>("#user-score");
+      const iaScore = document.querySelector<HTMLHeadingElement>("#ia-score");
 
       expect(playerName).toBeInTheDocument();
       expect(computerName).toBeInTheDocument();
@@ -81,8 +82,9 @@ describe("RockPaperScissorsPage.ts", () => {
     test("It should initialize scores to 0", () => {
       renderComponent();
 
-      const playerScore = document.getElementById("user-score");
-      const iaScore = document.getElementById("ia-score");
+      const playerScore =
+        document.querySelector<HTMLHeadingElement>("#user-score");
+      const iaScore = document.querySelector<HTMLHeadingElement>("#ia-score");
 
       expect(playerScore?.textContent).toBe("0");
       expect(iaScore?.textContent).toBe("0");
@@ -110,7 +112,8 @@ describe("RockPaperScissorsPage.ts", () => {
       const rock = screen.getByRole("img", { name: "roca" });
       await user.click(rock);
 
-      const playerScore = document.getElementById("user-score");
+      const playerScore =
+        document.querySelector<HTMLHeadingElement>("#user-score");
       expect(playerScore?.textContent).toBe("1");
     });
 
@@ -121,7 +124,7 @@ describe("RockPaperScissorsPage.ts", () => {
       const rock = screen.getByRole("img", { name: "roca" });
       await user.click(rock);
 
-      const iaScore = document.getElementById("ia-score");
+      const iaScore = document.querySelector<HTMLHeadingElement>("#ia-score");
       expect(iaScore?.textContent).toBe("0");
     });
 
@@ -146,7 +149,8 @@ describe("RockPaperScissorsPage.ts", () => {
       const rock = screen.getByRole("img", { name: "roca" });
       await user.click(rock);
 
-      const textPlay = document.querySelector(".game__description");
+      const textPlay =
+        document.querySelector<HTMLHeadingElement>(".game__description");
       expect(textPlay?.textContent).toBe("");
     });
   });
@@ -172,7 +176,7 @@ describe("RockPaperScissorsPage.ts", () => {
       const paper = screen.getByRole("img", { name: "papel" });
       await user.click(paper);
 
-      const iaScore = document.getElementById("ia-score");
+      const iaScore = document.querySelector<HTMLHeadingElement>("#ia-score");
       expect(iaScore?.textContent).toBe("1");
     });
 
@@ -183,7 +187,8 @@ describe("RockPaperScissorsPage.ts", () => {
       const paper = screen.getByRole("img", { name: "papel" });
       await user.click(paper);
 
-      const playerScore = document.getElementById("user-score");
+      const playerScore =
+        document.querySelector<HTMLHeadingElement>("#user-score");
       expect(playerScore?.textContent).toBe("0");
     });
 
@@ -223,8 +228,9 @@ describe("RockPaperScissorsPage.ts", () => {
       const scissor = screen.getByRole("img", { name: "tijera" });
       await user.click(scissor);
 
-      const playerScore = document.getElementById("user-score");
-      const iaScore = document.getElementById("ia-score");
+      const playerScore =
+        document.querySelector<HTMLHeadingElement>("#user-score");
+      const iaScore = document.querySelector<HTMLHeadingElement>("#ia-score");
 
       expect(playerScore?.textContent).toBe("0");
       expect(iaScore?.textContent).toBe("0");
