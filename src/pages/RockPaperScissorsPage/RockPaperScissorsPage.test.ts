@@ -1,4 +1,4 @@
-import { screen, waitFor } from "@testing-library/dom";
+import { screen } from "@testing-library/dom";
 import user from "@testing-library/user-event";
 
 import { Result } from "@src/entities/enums";
@@ -6,8 +6,6 @@ import { Result } from "@src/entities/enums";
 import { RockPaperScissorsPage } from "@src/pages/RockPaperScissorsPage/RockPaperScissorsPage";
 
 import { getResult } from "@src/helpers/getResult";
-
-import { iaChoices } from "@src/constants/vars";
 
 jest.mock("@src/helpers/getResult");
 jest.mock("@src/constants/vars", () => ({
@@ -21,7 +19,7 @@ type RenderComponent = {
 const renderComponent = (): RenderComponent => {
   const container = RockPaperScissorsPage();
   document.body.appendChild(container);
-  return { container };
+  return { container: container };
 };
 
 describe("RockPaperScissorsPage.ts", () => {

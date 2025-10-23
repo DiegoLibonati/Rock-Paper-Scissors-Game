@@ -6,7 +6,7 @@ import { ChoiceProps } from "@src/entities/props";
 import { Choice } from "@src/components/Choice/Choice";
 
 type RenderComponent = {
-  props: ChoiceProps;
+  props: { onClick: jest.Mock } & ChoiceProps;
   container: HTMLImageElement;
 };
 
@@ -17,7 +17,7 @@ const renderComponent = (
   className?: string,
   onClick?: jest.Mock
 ): RenderComponent => {
-  const props: ChoiceProps = {
+  const props = {
     id,
     name,
     srcImg,
