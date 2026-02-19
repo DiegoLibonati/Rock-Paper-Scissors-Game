@@ -1,84 +1,18 @@
-import { Result } from "@src/entities/enums";
+import { Result } from "@/types/enums";
+import type { Page } from "@/types/pages";
 
-import { Choice } from "@src/components/Choice/Choice";
+import { Choice } from "@/components/Choice/Choice";
 
-import { iaChoices } from "@src/constants/vars";
+import { iaChoices } from "@/constants/vars";
 
-import { getResult } from "@src/helpers/getResult";
+import { getResult } from "@/helpers/getResult";
 
-import assets from "@src/assets/export";
+import assets from "@/assets/export";
 
-import "@src/pages/RockPaperScissorsPage/RockPaperScissorsPage.css";
+import "@/pages/RockPaperScissorsPage/RockPaperScissorsPage.css";
 
-let timeout: NodeJS.Timeout;
-
-const getUserChoice = (e: MouseEvent): void => {
-  const imgsUserOptions =
-    document.querySelectorAll<HTMLImageElement>(".game__choice");
-  const textPlay =
-    document.querySelector<HTMLHeadingElement>(".game__description");
-  const scorePlayer = document.querySelector<HTMLHeadingElement>(
-    ".game__player-score"
-  );
-  const scoreIA = document.querySelector<HTMLHeadingElement>(".game__ia-score");
-  const textResult =
-    document.querySelector<HTMLHeadingElement>(".game__result-text");
-
-  const target = e.target as HTMLImageElement;
-
-  const optionUserChoice = target?.id;
-  const optionIaChoice =
-    iaChoices[Math.floor(Math.random() * iaChoices.length)];
-
-  const userResult = getResult(optionUserChoice, optionIaChoice);
-
-  imgsUserOptions.forEach((btnUserOption) => {
-    const button = btnUserOption as HTMLImageElement;
-    button.style.pointerEvents = "none";
-  });
-
-  textPlay!.textContent = "";
-
-  if (userResult === Result.Win) {
-    textResult!.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | User Win!`;
-    scorePlayer!.textContent = `${Number(scorePlayer!.textContent) + 1}`;
-    return;
-  }
-
-  if (userResult === Result.Lose) {
-    textResult!.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Ia Win!`;
-    scoreIA!.textContent = `${Number(scoreIA!.textContent) + 1}`;
-    return;
-  }
-
-  textResult!.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Draw!`;
-};
-
-const resetToPlay = () => {
-  const imgsUserOptions =
-    document.querySelectorAll<HTMLImageElement>(".game__choice");
-  const textPlay =
-    document.querySelector<HTMLHeadingElement>(".game__description");
-  const textResult =
-    document.querySelector<HTMLHeadingElement>(".game__result-text");
-
-  timeout = setTimeout(() => {
-    if (textResult!.textContent === "Choose an option")
-      return clearTimeout(timeout!);
-
-    if (timeout) clearTimeout(timeout);
-
-    imgsUserOptions.forEach((imgUserOption) => {
-      const img = imgUserOption as HTMLImageElement;
-      img.style.pointerEvents = "auto";
-    });
-    textPlay!.textContent = "Make your choice now!";
-    textResult!.textContent = "Choose an option";
-  }, 2500);
-};
-
-export const RockPaperScissorsPage = (): HTMLElement => {
-  const main = document.createElement("main");
+export const RockPaperScissorsPage = (): Page => {
+  const main = document.createElement("main") as Page;
   main.className = "game-main";
 
   main.innerHTML = `
@@ -111,30 +45,133 @@ export const RockPaperScissorsPage = (): HTMLElement => {
   const textResult =
     main.querySelector<HTMLHeadingElement>(".game__result-text");
 
+  let timeout: number | null = null;
+
+  const getUserChoice = (e: MouseEvent): void => {
+    const imgsUserOptions =
+      main.querySelectorAll<HTMLImageElement>(".game__choice");
+    const textPlay =
+      main.querySelector<HTMLHeadingElement>(".game__description");
+    const scorePlayer = main.querySelector<HTMLHeadingElement>(
+      ".game__player-score"
+    );
+    const scoreIA = main.querySelector<HTMLHeadingElement>(".game__ia-score");
+    const textResult =
+      main.querySelector<HTMLHeadingElement>(".game__result-text");
+
+    if (!textPlay || !scorePlayer || !scoreIA || !textResult) return;
+
+    const target = e.target as HTMLImageElement;
+
+    const optionUserChoice = target.id;
+    const optionIaChoice =
+      iaChoices[Math.floor(Math.random() * iaChoices.length)]!;
+
+    const userResult = getResult(optionUserChoice, optionIaChoice);
+
+    imgsUserOptions.forEach((btnUserOption) => {
+      btnUserOption.style.pointerEvents = "none";
+    });
+
+    textPlay.textContent = "";
+
+    if (userResult === Result.Win) {
+      textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | User Win!`;
+      scorePlayer.textContent = `${Number(scorePlayer.textContent) + 1}`;
+      return;
+    }
+
+    if (userResult === Result.Lose) {
+      textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Ia Win!`;
+      scoreIA.textContent = `${Number(scoreIA.textContent) + 1}`;
+      return;
+    }
+
+    textResult.textContent = `User choose: ${optionUserChoice} | Ia choose: ${optionIaChoice} | Draw!`;
+  };
+
+  const resetToPlay = (): void => {
+    const imgsUserOptions =
+      main.querySelectorAll<HTMLImageElement>(".game__choice");
+    const textPlay =
+      main.querySelector<HTMLHeadingElement>(".game__description");
+    const textResult =
+      main.querySelector<HTMLHeadingElement>(".game__result-text");
+
+    if (!textPlay || !textResult) return;
+
+    if (timeout !== null) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+
+    timeout = setTimeout(() => {
+      if (textResult.textContent === "Choose an option") {
+        timeout = null;
+        return;
+      }
+
+      imgsUserOptions.forEach((imgUserOption) => {
+        imgUserOption.style.pointerEvents = "auto";
+      });
+
+      textPlay.textContent = "Make your choice now!";
+      textResult.textContent = "Choose an option";
+      timeout = null;
+    }, 2500);
+  };
+
   const rock = Choice({
     id: "rock",
     name: "roca",
     srcImg: assets.images.RockPng,
-    onClick: (e) => getUserChoice(e),
+    onClick: (e) => {
+      getUserChoice(e);
+    },
   });
+
   const paper = Choice({
     id: "paper",
     name: "papel",
     srcImg: assets.images.PaperPng,
-    onClick: (e) => getUserChoice(e),
+    onClick: (e) => {
+      getUserChoice(e);
+    },
   });
+
   const scissor = Choice({
     id: "scissor",
     name: "tijera",
-    srcImg: assets.images.TijeraPng,
-    onClick: (e) => getUserChoice(e),
+    srcImg: assets.images.ScissorPng,
+    onClick: (e) => {
+      getUserChoice(e);
+    },
   });
 
   gameChoices?.append(rock, paper, scissor);
 
-  new MutationObserver(() => resetToPlay()).observe(textResult!, {
-    childList: true,
+  const observer = new MutationObserver(() => {
+    resetToPlay();
   });
+
+  if (textResult) {
+    observer.observe(textResult, {
+      childList: true,
+    });
+  }
+
+  main.cleanup = (): void => {
+    if (timeout !== null) {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+
+    observer.disconnect();
+
+    rock.cleanup?.();
+    paper.cleanup?.();
+    scissor.cleanup?.();
+  };
 
   return main;
 };

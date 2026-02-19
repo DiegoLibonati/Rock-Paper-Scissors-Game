@@ -1,6 +1,7 @@
-import { ChoiceProps } from "@src/entities/props";
+import type { ChoiceProps } from "@/types/props";
+import type { ChoiceComponent } from "@/types/components";
 
-import "@src/components/Choice/Choice.css";
+import "@/components/Choice/Choice.css";
 
 export const Choice = ({
   id,
@@ -8,14 +9,22 @@ export const Choice = ({
   className,
   srcImg,
   onClick,
-}: ChoiceProps): HTMLImageElement => {
-  const img = document.createElement("img");
+}: ChoiceProps): ChoiceComponent => {
+  const img = document.createElement("img") as ChoiceComponent;
   img.id = id;
   img.src = srcImg;
   img.alt = name;
   img.className = `game__choice ${className ?? ""}`;
 
-  img.addEventListener("click", (e) => onClick(e));
+  const handleClick = (e: MouseEvent): void => {
+    onClick(e);
+  };
+
+  img.addEventListener("click", handleClick);
+
+  img.cleanup = (): void => {
+    img.removeEventListener("click", handleClick);
+  };
 
   return img;
 };

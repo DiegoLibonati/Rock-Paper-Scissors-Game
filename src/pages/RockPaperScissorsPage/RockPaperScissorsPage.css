@@ -31,14 +31,14 @@
 .game__player-name,
 .game__ia-name {
   font-size: 1.563rem;
-  color: var(--white-color);
+  color: var(--color-white);
 }
 
 .game__player-score,
 .game__ia-score {
   font-size: 1.25rem;
   margin-top: 0.625rem;
-  color: var(--white-color);
+  color: var(--color-white);
 }
 
 .game__content {
@@ -55,7 +55,7 @@
   font-size: 1.563rem;
   text-align: center;
   margin: 1.25rem 0 1.25rem 0;
-  color: var(--white-color);
+  color: var(--color-white);
 }
 
 .game__choices {
