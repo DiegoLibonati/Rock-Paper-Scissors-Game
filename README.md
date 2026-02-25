@@ -31,7 +31,7 @@ I made a rock-paper-scissors like web page where the user plays against an AI. T
 #### Dependencies
 
 ```
-There are no dependencies.
+No production dependencies - Pure Vanilla TypeScript
 ```
 
 #### devDependencies
