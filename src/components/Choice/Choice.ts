@@ -15,6 +15,9 @@ export const Choice = ({
   img.src = srcImg;
   img.alt = name;
   img.className = `game__choice ${className ?? ""}`;
+  img.setAttribute("role", "button");
+  img.setAttribute("tabindex", "0");
+  img.setAttribute("aria-label", `Choose ${name}`);
 
   const handleClick = (e: MouseEvent): void => {
     onClick(e);

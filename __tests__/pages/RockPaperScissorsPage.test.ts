@@ -58,16 +58,16 @@ describe("RockPaperScissorsPage", () => {
   it("should render all three choice images", () => {
     renderPage();
 
-    expect(screen.getByAltText("roca")).toBeInTheDocument();
-    expect(screen.getByAltText("papel")).toBeInTheDocument();
-    expect(screen.getByAltText("tijera")).toBeInTheDocument();
+    expect(screen.getByAltText("rock")).toBeInTheDocument();
+    expect(screen.getByAltText("paper")).toBeInTheDocument();
+    expect(screen.getByAltText("scissor")).toBeInTheDocument();
   });
 
   it("should update result text when user makes a choice", async () => {
     const user = userEvent.setup({ delay: null });
     renderPage();
 
-    const rockChoice = screen.getByAltText("roca");
+    const rockChoice = screen.getByAltText("rock");
     await user.click(rockChoice);
 
     const resultText =
@@ -82,7 +82,7 @@ describe("RockPaperScissorsPage", () => {
 
     renderPage();
 
-    const rockChoice = screen.getByAltText("roca");
+    const rockChoice = screen.getByAltText("rock");
     await user.click(rockChoice);
 
     const resultText =
@@ -103,7 +103,7 @@ describe("RockPaperScissorsPage", () => {
 
     renderPage();
 
-    const rockChoice = screen.getByAltText("roca");
+    const rockChoice = screen.getByAltText("rock");
     await user.click(rockChoice);
 
     const resultText =
@@ -123,7 +123,7 @@ describe("RockPaperScissorsPage", () => {
 
     renderPage();
 
-    const rockChoice = screen.getByAltText("roca");
+    const rockChoice = screen.getByAltText("rock");
     await user.click(rockChoice);
 
     const resultText =
@@ -137,7 +137,7 @@ describe("RockPaperScissorsPage", () => {
     const user = userEvent.setup({ delay: null });
     renderPage();
 
-    const rockChoice = screen.getByAltText("roca");
+    const rockChoice = screen.getByAltText("rock");
     await user.click(rockChoice);
 
     expect(rockChoice.style.pointerEvents).toBe("none");
@@ -147,7 +147,7 @@ describe("RockPaperScissorsPage", () => {
     const user = userEvent.setup({ delay: null });
     renderPage();
 
-    const rockChoice = screen.getByAltText("roca");
+    const rockChoice = screen.getByAltText("rock");
     await user.click(rockChoice);
 
     jest.advanceTimersByTime(2500);
@@ -164,7 +164,7 @@ describe("RockPaperScissorsPage", () => {
     const user = userEvent.setup({ delay: null });
     renderPage();
 
-    const rockChoice = screen.getByAltText("roca");
+    const rockChoice = screen.getByAltText("rock");
     await user.click(rockChoice);
 
     expect(rockChoice.style.pointerEvents).toBe("none");

@@ -14,24 +14,25 @@ import "@/pages/RockPaperScissorsPage/RockPaperScissorsPage.css";
 export const RockPaperScissorsPage = (): Page => {
   const main = document.createElement("main") as Page;
   main.className = "game-main";
+  main.setAttribute("aria-label", "Rock Paper Scissors Game");
 
   main.innerHTML = `
     <section class="game">
-        <article class="game__header">
+        <article class="game__header" aria-label="Scoreboard">
             <div class="game__header-user">
                 <h2 class="game__player-name">Player</h2>
-                <h3 class="game__player-score" id="user-score">0</h3>
+                <h3 class="game__player-score" id="user-score" aria-label="Player score">0</h3>
             </div>
             <div class="game__header-ia">
                 <h2 class="game__ia-name">Computer</h2>
-                <h3 class="game__ia-score" id="ia-score">0</h3>
+                <h3 class="game__ia-score" id="ia-score" aria-label="Computer score">0</h3>
             </div>
         </article>
 
         <article class="game__content">
-            <h2 id="text-result" class="game__result-text">Choose an option</h2>
+            <h2 id="text-result" class="game__result-text" aria-live="polite" aria-atomic="true">Choose an option</h2>
 
-            <div class="game__choices">
+            <div class="game__choices" role="group" aria-label="Choose your move">
             </div>
 
             <h2 id="text-play" class="game__description">
@@ -123,7 +124,7 @@ export const RockPaperScissorsPage = (): Page => {
 
   const rock = Choice({
     id: "rock",
-    name: "roca",
+    name: "rock",
     srcImg: assets.images.RockPng,
     onClick: (e) => {
       getUserChoice(e);
@@ -132,7 +133,7 @@ export const RockPaperScissorsPage = (): Page => {
 
   const paper = Choice({
     id: "paper",
-    name: "papel",
+    name: "paper",
     srcImg: assets.images.PaperPng,
     onClick: (e) => {
       getUserChoice(e);
@@ -141,7 +142,7 @@ export const RockPaperScissorsPage = (): Page => {
 
   const scissor = Choice({
     id: "scissor",
-    name: "tijera",
+    name: "scissor",
     srcImg: assets.images.ScissorPng,
     onClick: (e) => {
       getUserChoice(e);

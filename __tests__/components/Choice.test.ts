@@ -21,7 +21,7 @@ describe("Choice Component", () => {
 
   const defaultProps: ChoiceProps = {
     id: "rock",
-    name: "roca",
+    name: "rock",
     srcImg: "/images/rock.png",
     onClick: mockOnClick,
   };
@@ -29,7 +29,7 @@ describe("Choice Component", () => {
   it("should render image with correct attributes", () => {
     renderComponent(defaultProps);
 
-    const image = screen.getByAltText("roca");
+    const image = screen.getByAltText("rock");
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute("id", "rock");
     expect(image).toHaveAttribute("src", "/images/rock.png");
@@ -41,7 +41,7 @@ describe("Choice Component", () => {
     const user = userEvent.setup();
     renderComponent(defaultProps);
 
-    const image = screen.getByAltText("roca");
+    const image = screen.getByAltText("rock");
     await user.click(image);
 
     expect(mockOnClick).toHaveBeenCalledTimes(1);
@@ -56,21 +56,21 @@ describe("Choice Component", () => {
 
     renderComponent(propsWithClass);
 
-    const image = screen.getByAltText("roca");
+    const image = screen.getByAltText("rock");
     expect(image).toHaveClass("game__choice", "custom-choice");
   });
 
   it("should render different choices", () => {
     const paperProps: ChoiceProps = {
       id: "paper",
-      name: "papel",
+      name: "paper",
       srcImg: "/images/paper.png",
       onClick: mockOnClick,
     };
 
     renderComponent(paperProps);
 
-    const image = screen.getByAltText("papel");
+    const image = screen.getByAltText("paper");
     expect(image).toBeInTheDocument();
     expect(image).toHaveAttribute("id", "paper");
   });
@@ -81,7 +81,7 @@ describe("Choice Component", () => {
 
     choice.cleanup?.();
 
-    const image = screen.getByAltText("roca");
+    const image = screen.getByAltText("rock");
     await user.click(image);
 
     expect(mockOnClick).not.toHaveBeenCalled();
