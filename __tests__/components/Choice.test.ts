@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import type { ChoiceProps } from "@/types/props";
 import type { ChoiceComponent } from "@/types/components";
 
-import { Choice } from "@/components/Choice/Choice";
+import Choice from "@/components/Choice/Choice";
 
 const renderComponent = (props: ChoiceProps): ChoiceComponent => {
   const container = Choice(props);

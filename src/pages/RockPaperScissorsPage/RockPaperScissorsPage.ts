@@ -1,7 +1,7 @@
 import { Result } from "@/types/enums";
 import type { Page } from "@/types/pages";
 
-import { Choice } from "@/components/Choice/Choice";
+import Choice from "@/components/Choice/Choice";
 
 import { iaChoices } from "@/constants/vars";
 
@@ -11,7 +11,7 @@ import assets from "@/assets/export";
 
 import "@/pages/RockPaperScissorsPage/RockPaperScissorsPage.css";
 
-export const RockPaperScissorsPage = (): Page => {
+const RockPaperScissorsPage = (): Page => {
   const main = document.createElement("main") as Page;
   main.className = "game-main";
   main.setAttribute("aria-label", "Rock Paper Scissors Game");
@@ -176,3 +176,5 @@ export const RockPaperScissorsPage = (): Page => {
 
   return main;
 };
+
+export default RockPaperScissorsPage;

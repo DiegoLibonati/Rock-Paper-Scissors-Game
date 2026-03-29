@@ -3,7 +3,7 @@ import type { ChoiceComponent } from "@/types/components";
 
 import "@/components/Choice/Choice.css";
 
-export const Choice = ({
+const Choice = ({
   id,
   name,
   className,
@@ -31,3 +31,5 @@ export const Choice = ({
 
   return img;
 };
+
+export default Choice;

@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
-import { RockPaperScissorsPage } from "@/pages/RockPaperScissorsPage/RockPaperScissorsPage";
+import RockPaperScissorsPage from "@/pages/RockPaperScissorsPage/RockPaperScissorsPage";
 
 import type { Page } from "@/types/pages";
 

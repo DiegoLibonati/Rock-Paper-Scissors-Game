@@ -1,5 +1,5 @@
 import "@/index.css";
-import { RockPaperScissorsPage } from "@/pages/RockPaperScissorsPage/RockPaperScissorsPage";
+import RockPaperScissorsPage from "@/pages/RockPaperScissorsPage/RockPaperScissorsPage";
 
 const onInit = (): void => {
   const app = document.querySelector<HTMLDivElement>("#app");
