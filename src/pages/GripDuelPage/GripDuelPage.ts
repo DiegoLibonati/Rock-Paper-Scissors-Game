@@ -9,12 +9,12 @@ import { getResult } from "@/helpers/getResult";
 
 import assets from "@/assets/export";
 
-import "@/pages/RockPaperScissorsPage/RockPaperScissorsPage.css";
+import "@/pages/GripDuelPage/GripDuelPage.css";
 
-const RockPaperScissorsPage = (): Page => {
+const GripDuelPage = (): Page => {
   const main = document.createElement("main") as Page;
   main.className = "game-main";
-  main.setAttribute("aria-label", "Rock Paper Scissors Game");
+  main.setAttribute("aria-label", "GripDuel");
 
   main.innerHTML = `
     <section class="game">
@@ -177,4 +177,4 @@ const RockPaperScissorsPage = (): Page => {
   return main;
 };
 
-export default RockPaperScissorsPage;
+export default GripDuelPage;

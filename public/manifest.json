@@ -1,7 +1,7 @@
 {
-  "name": "Rock Paper Scissors Game",
-  "short_name": "Rock Paper Scissors Game",
-  "description": "I made a rock-paper-scissors like web page where the user plays against an AI. The AI is configured to choose randomly by rock, paper, scissors. In case the user wins a victory sign and the AI selection will be shown, in case the user loses the same thing will happen and if the user draws as well.",
+  "name": "GripDuel",
+  "short_name": "GripDuel",
+  "description": "GripDuel is a browser-based Rock Paper Scissors game where a single player competes against an AI opponent in real time. The game is built as a vanilla TypeScript SPA with no runtime dependencies, making it lightweight and fast to load.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

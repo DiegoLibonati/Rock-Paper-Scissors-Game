@@ -1,37 +1,36 @@
+import { getResult } from "@/helpers/getResult";
 import { Result } from "@/types/enums";
 
-import { getResult } from "@/helpers/getResult";
-
 describe("getResult", () => {
-  describe("User wins scenarios", () => {
-    it("should return Win when user chooses rock and IA chooses scissor", () => {
+  describe("Win", () => {
+    it("should return Win when user chooses rock and ia chooses scissor", () => {
       expect(getResult("rock", "scissor")).toBe(Result.Win);
     });
 
-    it("should return Win when user chooses paper and IA chooses rock", () => {
+    it("should return Win when user chooses paper and ia chooses rock", () => {
       expect(getResult("paper", "rock")).toBe(Result.Win);
     });
 
-    it("should return Win when user chooses scissor and IA chooses paper", () => {
+    it("should return Win when user chooses scissor and ia chooses paper", () => {
       expect(getResult("scissor", "paper")).toBe(Result.Win);
     });
   });
 
-  describe("User loses scenarios", () => {
-    it("should return Lose when user chooses rock and IA chooses paper", () => {
+  describe("Lose", () => {
+    it("should return Lose when user chooses rock and ia chooses paper", () => {
       expect(getResult("rock", "paper")).toBe(Result.Lose);
     });
 
-    it("should return Lose when user chooses paper and IA chooses scissor", () => {
+    it("should return Lose when user chooses paper and ia chooses scissor", () => {
       expect(getResult("paper", "scissor")).toBe(Result.Lose);
     });
 
-    it("should return Lose when user chooses scissor and IA chooses rock", () => {
+    it("should return Lose when user chooses scissor and ia chooses rock", () => {
       expect(getResult("scissor", "rock")).toBe(Result.Lose);
     });
   });
 
-  describe("Draw scenarios", () => {
+  describe("Draw", () => {
     it("should return Draw when both choose rock", () => {
       expect(getResult("rock", "rock")).toBe(Result.Draw);
     });

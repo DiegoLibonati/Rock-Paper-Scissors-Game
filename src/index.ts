@@ -1,13 +1,13 @@
 import "@/index.css";
-import RockPaperScissorsPage from "@/pages/RockPaperScissorsPage/RockPaperScissorsPage";
+import GripDuelPage from "@/pages/GripDuelPage/GripDuelPage";
 
 const onInit = (): void => {
   const app = document.querySelector<HTMLDivElement>("#app");
 
   if (!app) throw new Error(`You must render a container to mount the app.`);
 
-  const rockPaperScissorsPage = RockPaperScissorsPage();
-  app.appendChild(rockPaperScissorsPage);
+  const gridDuelPage = GripDuelPage();
+  app.appendChild(gridDuelPage);
 };
 
 document.addEventListener("DOMContentLoaded", onInit);

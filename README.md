@@ -1,4 +1,4 @@
-# Rock Paper Scissors Game
+# GripDuel
 
 ## Educational Purpose
 
@@ -17,7 +17,13 @@ The application will open automatically at `http://localhost:3000`
 
 ## Description
 
-I made a rock-paper-scissors like web page where the user plays against an AI. The AI is configured to choose randomly by rock, paper, scissors. In case the user wins a victory sign and the AI selection will be shown, in case the user loses the same thing will happen and if the user draws as well.
+**GripDuel** is a browser-based Rock Paper Scissors game where a single player competes against an AI opponent in real time. The game is built as a vanilla TypeScript SPA with no runtime dependencies, making it lightweight and fast to load.
+
+The player is presented with three choices — Rock, Paper, and Scissors — displayed as clickable image buttons. Once the player selects one, the AI instantly picks its own option at random, the result is determined, and the outcome is displayed on screen: whether the player won, lost, or tied, along with both choices for full transparency. Both the player score and the AI score are tracked throughout the session and update after every round.
+
+After each round, the game enters a short cooldown of 2.5 seconds during which the choice buttons are disabled. This prevents accidental double clicks and gives the player time to read the result before the board resets automatically. Once the cooldown ends, the result clears, the buttons re-enable, and the player is ready to throw again — no page refresh needed.
+
+The UI is fully accessible: all interactive elements have ARIA roles, labels, and keyboard focus support, and result announcements are wired to a live region so screen readers can pick them up. The layout is clean and responsive, designed to work across desktop and mobile browsers without any framework overhead.
 
 ## Technologies used
 
@@ -59,11 +65,7 @@ No production dependencies - Pure Vanilla TypeScript
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/Rock-Paper-Scissors-Game`](https://www.diegolibonati.com.ar/#/project/Rock-Paper-Scissors-Game)
-
-## Video
-
-https://user-images.githubusercontent.com/99032604/200139528-5923183c-25b0-4d3b-97c6-7348b070eefe.mp4
+[`https://www.diegolibonati.com.ar/#/project/grip-duel`](https://www.diegolibonati.com.ar/#/project/grip-duel)
 
 ## Testing
 
