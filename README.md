@@ -1,4 +1,4 @@
-# GripDuel
+# Grip Duel
 
 ## Educational Purpose
 
@@ -17,7 +17,7 @@ The application will open automatically at `http://localhost:3000`
 
 ## Description
 
-**GripDuel** is a browser-based Rock Paper Scissors game where a single player competes against an AI opponent in real time. The game is built as a vanilla TypeScript SPA with no runtime dependencies, making it lightweight and fast to load.
+**Grip Duel** is a browser-based Rock Paper Scissors game where a single player competes against an AI opponent in real time. The game is built as a vanilla TypeScript SPA with no runtime dependencies, making it lightweight and fast to load.
 
 The player is presented with three choices — Rock, Paper, and Scissors — displayed as clickable image buttons. Once the player selects one, the AI instantly picks its own option at random, the result is determined, and the outcome is displayed on screen: whether the player won, lost, or tied, along with both choices for full transparency. Both the player score and the AI score are tracked throughout the session and update after every round.
 

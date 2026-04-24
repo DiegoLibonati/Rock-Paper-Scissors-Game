@@ -14,7 +14,7 @@ import "@/pages/GripDuelPage/GripDuelPage.css";
 const GripDuelPage = (): Page => {
   const main = document.createElement("main") as Page;
   main.className = "game-main";
-  main.setAttribute("aria-label", "GripDuel");
+  main.setAttribute("aria-label", "Grip Duel");
 
   main.innerHTML = `
     <section class="game">
