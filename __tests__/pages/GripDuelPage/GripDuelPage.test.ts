@@ -14,6 +14,7 @@ const renderPage = (): Page => {
 describe("GripDuelPage", () => {
   afterEach(() => {
     document.body.innerHTML = "";
+    jest.restoreAllMocks();
   });
 
   describe("rendering", () => {

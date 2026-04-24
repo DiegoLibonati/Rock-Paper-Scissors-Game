@@ -24,6 +24,7 @@ const renderComponent = (props: Partial<ChoiceProps> = {}): ChoiceComponent => {
 describe("Choice", () => {
   afterEach(() => {
     document.body.innerHTML = "";
+    jest.clearAllMocks();
   });
 
   describe("rendering", () => {

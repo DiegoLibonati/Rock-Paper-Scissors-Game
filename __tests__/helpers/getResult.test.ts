@@ -1,5 +1,6 @@
-import { getResult } from "@/helpers/getResult";
 import { Result } from "@/types/enums";
+
+import { getResult } from "@/helpers/getResult";
 
 describe("getResult", () => {
   describe("Win", () => {
